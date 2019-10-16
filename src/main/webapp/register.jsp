@@ -12,11 +12,11 @@
         <title>JSP Page</title>
         
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
    
    
-     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+     <script src="js/jquery-1.10.2.min.js" ></script>
+      <script src="js/bootstrap.min.js"></script>
     <style>
         font{
             color: green;
@@ -29,6 +29,11 @@
             <div class="row">
                 <div class="col-md-4">wvwvewv</div>
                 <div class="col-md-4">
+                    wwww
+                </div>
+                
+                <div class="col-md-2">wvwvewv</div>
+                <div class="col-md-1">
                     wwww
                 </div>
             </div>
