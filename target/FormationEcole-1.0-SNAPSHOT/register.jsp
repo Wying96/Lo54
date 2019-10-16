@@ -12,11 +12,11 @@
         <title>JSP Page</title>
         
     
-    <link rel="stylesheet" href="css/booStrap.min.css" type="css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="css"/>
    
    
-     <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
-      <script src="js/bootStrap.min.js" type="text/javascript"></script>
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
     <style>
         font{
             color: green;
