@@ -38,13 +38,14 @@ public class Course implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 1)
+    @Size(min = 1, max = 16)
     @Column(name = "ID")
     private String id;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 128)
     @Column(name = "TITLE")
-    private Character title;
+    private String title;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
     private Collection<CourseSession> courseSessionCollection;
 
@@ -55,7 +56,7 @@ public class Course implements Serializable {
         this.id = id;
     }
 
-    public Course(String id, Character title) {
+    public Course(String id, String title) {
         this.id = id;
         this.title = title;
     }
@@ -68,11 +69,11 @@ public class Course implements Serializable {
         this.id = id;
     }
 
-    public Character getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(Character title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

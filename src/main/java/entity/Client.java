@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -43,22 +44,31 @@ public class Client implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 128)
     @Column(name = "LASTNAME")
-    private Character lastname;
+    private String lastname;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 64)
     @Column(name = "FIRSTNAME")
-    private Character firstname;
+    private String firstname;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 128)
     @Column(name = "ADDRESS")
-    private Character address;
+    private String address;
+    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 128)
     @Column(name = "PHONE")
-    private Character phone;
+    private String phone;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 128)
     @Column(name = "EMAIL")
-    private Character email;
+    private String email;
     @JoinColumn(name = "COURSE_SESSION_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private CourseSession courseSessionId;
@@ -70,12 +80,13 @@ public class Client implements Serializable {
         this.id = id;
     }
 
-    public Client(Integer id, Character lastname, Character firstname, Character address, Character phone) {
+    public Client(Integer id, String lastname, String firstname, String address, String phone, String email) {
         this.id = id;
         this.lastname = lastname;
         this.firstname = firstname;
         this.address = address;
         this.phone = phone;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -86,43 +97,43 @@ public class Client implements Serializable {
         this.id = id;
     }
 
-    public Character getLastname() {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setLastname(Character lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
-    public Character getFirstname() {
+    public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(Character firstname) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
-    public Character getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Character address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public Character getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Character phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Character getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Character email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

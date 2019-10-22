@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.utbm.dvdstore.core.repository;
+package repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,15 +15,15 @@ import java.sql.Statement;
  *
  * @author zchen01
  */
-public class JdbcConnector {
+public class MysqlConnector {
 
     public Connection con;
 
-    public JdbcConnector() {
+    public MysqlConnector() {
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection(
-                    "jdbc:derby://localhost:1527/video", "video", "video");
+                    "jdbc:mysql://localhost/FormationEcole", "root", "");
             System.out.println("CONNECTED");
         } catch (Exception e) {
             System.out.println("CONNECT FAILED");
@@ -48,13 +48,13 @@ public class JdbcConnector {
     public void runModify(String query) throws SQLException {
         try{
             Statement stmt = con.createStatement();
-            ResultSet rs=stmt.executeQuery(query);
+            int rs=stmt.executeUpdate(query);
             System.out.println("RUN SQL SUCCESS");
         }
         catch(Exception e) {
             System.out.println("RUN SQL FAILED");
             e.printStackTrace();
         }
-        con.commit();
+        
     }
 }
