@@ -40,24 +40,5 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-  <class name="entity.Client" optimistic-lock="version" schema="FormationEcole" table="CLIENT" />
-  <id name="id" type="int">
-      <column name="ID" />
-      <genertor class="assigned"/>
-  </id>
-  <proprerty name="LASTNAME" type="string">
-      <column length="20" name="LASTNAME" not-null="true"/>   
-  </proprerty>
-   <proprerty name="FIRSTNAME" type="string">
-      <column length="20" name="FIRSTNAME" not-null="true"/>   
-  </proprerty>
-   <proprerty name="ADDRESS" type="string">
-      <column length="20" name="ADDRESS" not-null="true"/>   
-  </proprerty>
-   <proprerty name="PHONE" type="string">
-      <column length="20" name="PHONE" not-null="true"/>   
-  </proprerty>
-   <proprerty name="EMAIL" type="string">
-      <column length="20" name="EMAIL" not-null="true"/>   
-  </proprerty>
+  <class name="entity.CourseSession" table="COURSE_SESSION"/>
 </hibernate-mapping>

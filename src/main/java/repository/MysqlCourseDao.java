@@ -25,4 +25,7 @@ public class MysqlCourseDao {
     con.runModify(query);
   
     }
+    
+    
+    
 }

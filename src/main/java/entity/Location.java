@@ -27,28 +27,12 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author wuying
  */
-@Entity
-@Table(name = "LOCATION")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Location.findAll", query = "SELECT l FROM Location l"),
-    @NamedQuery(name = "Location.findById", query = "SELECT l FROM Location l WHERE l.id = :id"),
-    @NamedQuery(name = "Location.findByCity", query = "SELECT l FROM Location l WHERE l.city = :city")})
-public class Location implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID")
-    private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "CITY")
-    private String city;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "locationId")
-    private Collection<CourseSession> courseSessionCollection;
+public class Location {
+
+    int id;
+    String city;
+    
 
     public Location() {
     }
@@ -78,35 +62,7 @@ public class Location implements Serializable {
         this.city = city;
     }
 
-    @XmlTransient
-    public Collection<CourseSession> getCourseSessionCollection() {
-        return courseSessionCollection;
-    }
-
-    public void setCourseSessionCollection(Collection<CourseSession> courseSessionCollection) {
-        this.courseSessionCollection = courseSessionCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
-            return false;
-        }
-        Location other = (Location) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
+  
     @Override
     public String toString() {
         return "entity.Location[ id=" + id + " ]";

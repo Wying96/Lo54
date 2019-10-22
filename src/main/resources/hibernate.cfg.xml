@@ -45,7 +45,13 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/FormationEcole?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <mapping resource="hibernate.hbm.xml"/>
-    <mapping resource="Client.hbm.xml"/>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <mapping resource="User.hbm.xml"/>
+    <mapping resource="location.hbm.xml"/>
+    <mapping resource="Course.hbm.xml"/>
+    <mapping resource="CourseSession.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
