@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -70,7 +71,7 @@ public class Client implements Serializable {
     @Column(name = "EMAIL")
     private String email;
     @JoinColumn(name = "COURSE_SESSION_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private CourseSession courseSessionId;
 
     public Client() {

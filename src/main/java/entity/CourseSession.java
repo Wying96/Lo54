@@ -6,12 +6,13 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,13 +62,13 @@ public class CourseSession implements Serializable {
     @Column(name = "MAX_NUMBER")
     private Integer maxNumber;
     @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Course courseId;
     @JoinColumn(name = "LOCATION_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Location locationId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseSessionId")
-    private Collection<Client> clientCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseSessionId", fetch = FetchType.LAZY)
+    private Set<Client> clientSet;
 
     public CourseSession() {
     }
@@ -131,12 +132,12 @@ public class CourseSession implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Client> getClientCollection() {
-        return clientCollection;
+    public Set<Client> getClientSet() {
+        return clientSet;
     }
 
-    public void setClientCollection(Collection<Client> clientCollection) {
-        this.clientCollection = clientCollection;
+    public void setClientSet(Set<Client> clientSet) {
+        this.clientSet = clientSet;
     }
 
     @Override

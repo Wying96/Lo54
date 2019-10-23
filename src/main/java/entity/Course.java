@@ -6,11 +6,12 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -46,8 +47,8 @@ public class Course implements Serializable {
     @Size(min = 1, max = 128)
     @Column(name = "TITLE")
     private String title;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
-    private Collection<CourseSession> courseSessionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId", fetch = FetchType.LAZY)
+    private Set<CourseSession> courseSessionSet;
 
     public Course() {
     }
@@ -78,12 +79,12 @@ public class Course implements Serializable {
     }
 
     @XmlTransient
-    public Collection<CourseSession> getCourseSessionCollection() {
-        return courseSessionCollection;
+    public Set<CourseSession> getCourseSessionSet() {
+        return courseSessionSet;
     }
 
-    public void setCourseSessionCollection(Collection<CourseSession> courseSessionCollection) {
-        this.courseSessionCollection = courseSessionCollection;
+    public void setCourseSessionSet(Set<CourseSession> courseSessionSet) {
+        this.courseSessionSet = courseSessionSet;
     }
 
     @Override

@@ -6,5 +6,6 @@
     <class>entity.CourseSession</class>
     <class>entity.Client</class>
     <class>entity.Location</class>
+    <class>entity.Users</class>
   </persistence-unit>
 </persistence>

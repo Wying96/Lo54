@@ -1,5 +1,6 @@
 
-import entity.User;
+import entity.Location;
+import entity.Users;
 import org.hibernate.Session;
 import tools.HibernateUtil;
 
@@ -18,13 +19,18 @@ public class App3 {
     public static void main(String[] args) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        User u=new User();
-        int i=1;
-        Long n=Long.valueOf(i);
-        u.setId(i);
+
+        Users u=new Users();
+     
+        int i=10;
+       //u.setIdUser(i);
         u.setName("dqwdq");
         u.setToto("yeyey");
-        session.save(u);
+        Location l=new Location();
+        l.setCity("sajhzgdkjashg");
+
+//        session.save(u);
+        session.save(l);
         session.getTransaction().commit();
         session.close();
         System.exit(0);
