@@ -1,7 +1,15 @@
 
+import entity.Course;
 import entity.Location;
 import entity.Users;
+import static java.lang.System.in;
+import java.util.Collection;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.hibernate.Session;
+import repository.HibernateCourseDao;
 import tools.HibernateUtil;
 
 /*
@@ -19,19 +27,25 @@ public class App3 {
     public static void main(String[] args) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-
-        Users u=new Users();
-     
-        int i=10;
-       //u.setIdUser(i);
-        u.setName("dqwdq");
-        u.setToto("yeyey");
+        EntityManagerFactory emf=Persistence.createEntityManagerFactory("fr.utbm_FormationEcole_war_1.0-SNAPSHOTPU");
+        EntityManager em=emf.createEntityManager();
+        em.getTransaction().begin();
+       
         Location l=new Location();
-        l.setCity("sajhzgdkjashg");
-
+        l.setCity("shanghai");
+      
+        HibernateCourseDao cdao=new HibernateCourseDao(em);
+       Collection<Course> cous=cdao.readAllCourse();
+        for(Course c:cous){
+                System.out.println(c.getId() + "  : "+c.getTitle()+"\n");
+        }
+        
+                System.out.println("saduahdkwhakdjakwd");
 //        session.save(u);
-        session.save(l);
-        session.getTransaction().commit();
+//        session.save(l);
+//        session.getTransaction().commit();
+em.close();
+emf.close();
         session.close();
         System.exit(0);
     }

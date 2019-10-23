@@ -49,7 +49,6 @@ Contributor(s):
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
-    <mapping class="entity.Users"/>
     <mapping class="entity.Location"/>
     <mapping class="entity.Course"/>
     <mapping class="entity.CourseSession"/>
