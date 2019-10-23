@@ -1,6 +1,9 @@
 
 import entity.Location;
 import entity.Users;
+import java.util.List;
+import org.hibernate.Query;
+
 import org.hibernate.Session;
 import tools.HibernateUtil;
 
@@ -21,16 +24,22 @@ public class App3 {
         session.beginTransaction();
 
         Users u=new Users();
-     
+        
+        Query query = session.getNamedQuery("Location.findAll");
+        
+        List<Location> list= query.list();
+        
         int i=10;
        //u.setIdUser(i);
-        u.setName("dqwdq");
-        u.setToto("yeyey");
-        Location l=new Location();
-        l.setCity("sajhzgdkjashg");
-
+//        u.setName("dqwdq");
+//        u.setToto("yeyey");
+//        Location l=new Location();
+//        l.setCity("sajhzgdkjashg");
+for(Location l:list){
+System.out.println(l.toString());
+}
 //        session.save(u);
-        session.save(l);
+//        session.save(l);
         session.getTransaction().commit();
         session.close();
         System.exit(0);
