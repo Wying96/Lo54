@@ -37,12 +37,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email")})
 public class Client implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID")
-    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
@@ -70,6 +64,13 @@ public class Client implements Serializable {
     @Size(min = 1, max = 128)
     @Column(name = "EMAIL")
     private String email;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID")
+    private Integer id;
     @JoinColumn(name = "COURSE_SESSION_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private CourseSession courseSessionId;
@@ -96,6 +97,40 @@ public class Client implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+
+    public CourseSession getCourseSessionId() {
+        return courseSessionId;
+    }
+
+    public void setCourseSessionId(CourseSession courseSessionId) {
+        this.courseSessionId = courseSessionId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Client)) {
+            return false;
+        }
+        Client other = (Client) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entity.Client[ id=" + id + " ]";
     }
 
     public String getLastname() {
@@ -136,39 +171,6 @@ public class Client implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public CourseSession getCourseSessionId() {
-        return courseSessionId;
-    }
-
-    public void setCourseSessionId(CourseSession courseSessionId) {
-        this.courseSessionId = courseSessionId;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Client)) {
-            return false;
-        }
-        Client other = (Client) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "entity.Client[ id=" + id + " ]";
     }
     
 }

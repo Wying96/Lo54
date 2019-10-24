@@ -32,8 +32,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Course.findAll", query = "SELECT c FROM Course c"),
     @NamedQuery(name = "Course.findById", query = "SELECT c FROM Course c WHERE c.id = :id"),
+    @NamedQuery(name = "Course.findByUncompletId", query = "SELECT c FROM Course c WHERE c.id like :id"),
+    @NamedQuery(name = "Course.findByUncompletTitle", query = "SELECT c FROM Course c WHERE c.title like :title"),
     @NamedQuery(name = "Course.findByTitle", query = "SELECT c FROM Course c WHERE c.title = :title")})
 public class Course implements Serializable {
+
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 128)
+    @Column(name = "TITLE")
+    private String title;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,12 +50,7 @@ public class Course implements Serializable {
     @Size(min = 1, max = 16)
     @Column(name = "ID")
     private String id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "TITLE")
-    private String title;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "courseId", fetch = FetchType.LAZY)
     private Set<CourseSession> courseSessionSet;
 
     public Course() {
@@ -70,13 +73,6 @@ public class Course implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     @XmlTransient
     public Set<CourseSession> getCourseSessionSet() {
@@ -110,6 +106,14 @@ public class Course implements Serializable {
     @Override
     public String toString() {
         return "entity.Course[ id=" + id + " ]";
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
     
 }

@@ -31,12 +31,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Users.findByToto", query = "SELECT u FROM Users u WHERE u.toto = :toto")})
 public class Users implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID_USER")
-    private Integer idUser;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 20)
@@ -45,6 +39,13 @@ public class Users implements Serializable {
     @Size(max = 20)
     @Column(name = "TOTO")
     private String toto;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID_USER")
+    private Integer idUser;
 
     public Users() {
     }
@@ -66,21 +67,6 @@ public class Users implements Serializable {
         this.idUser = idUser;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getToto() {
-        return toto;
-    }
-
-    public void setToto(String toto) {
-        this.toto = toto;
-    }
 
     @Override
     public int hashCode() {
@@ -105,6 +91,22 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "entity.Users[ idUser=" + idUser + " ]";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getToto() {
+        return toto;
+    }
+
+    public void setToto(String toto) {
+        this.toto = toto;
     }
     
 }

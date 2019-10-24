@@ -4,6 +4,8 @@
     Author     : wuying
 --%>
 
+<%@page import="entity.Course"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -78,7 +80,34 @@ justify-content: center;" >
                 
                 
             
-  
+ <table border="1" align="center">
+         <caption>学员信息</caption>
+           
+        <tr>
+            <th>姓名</th>
+            <td>操作</td>
+        </tr>
+    <%  
+        //取得域对象中的内容
+        List<Course> stringList = (List)request.getAttribute("stringList");
+           if(stringList.size()!=0){
+     for(int i=0;i<stringList.size();i++){        
+         pageContext.setAttribute("Course",stringList.get(i)); 
+    %>
+     
+        
+            <tr>
+                   <td bgcolor="#6C6C6C">${Course.getTitle()}</td>  
+                <td><a href="#">查看</a></td>
+            </tr>
+       <%  
+           } }
+            else{
+   
+   }
+            %>  
+     </table>
+ 
             
             
       

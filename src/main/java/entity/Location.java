@@ -37,17 +37,18 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Location.findByCity", query = "SELECT l FROM Location l WHERE l.city = :city")})
 public class Location implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 128)
+    @Column(name = "CITY")
+    private String city;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "CITY")
-    private String city;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "locationId", fetch = FetchType.LAZY)
     private Set<CourseSession> courseSessionSet;
 
@@ -71,13 +72,6 @@ public class Location implements Serializable {
         this.id = id;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
 
     @XmlTransient
     public Set<CourseSession> getCourseSessionSet() {
@@ -111,6 +105,14 @@ public class Location implements Serializable {
     @Override
     public String toString() {
         return "entity.Location[ id=" + id + " ]";
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
     
 }

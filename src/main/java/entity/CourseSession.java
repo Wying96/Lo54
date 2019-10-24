@@ -43,12 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CourseSession.findByMaxNumber", query = "SELECT c FROM CourseSession c WHERE c.maxNumber = :maxNumber")})
 public class CourseSession implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID")
-    private Integer id;
     @Basic(optional = false)
     @NotNull
     @Column(name = "START_DATE")
@@ -59,6 +53,13 @@ public class CourseSession implements Serializable {
     @Column(name = "END_DATE")
     @Temporal(TemporalType.DATE)
     private Date endDate;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
+    private Integer id;
     @Column(name = "MAX_NUMBER")
     private Integer maxNumber;
     @JoinColumn(name = "COURSE_ID", referencedColumnName = "ID")
@@ -164,5 +165,8 @@ public class CourseSession implements Serializable {
     public String toString() {
         return "entity.CourseSession[ id=" + id + " ]";
     }
+
+
+
     
 }
