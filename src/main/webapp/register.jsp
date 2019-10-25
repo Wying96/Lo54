@@ -89,7 +89,7 @@ justify-content: center;" >
         </tr>
     <%  
         //取得域对象中的内容
-        List<Course> stringList = (List)request.getAttribute("stringList");
+        List<Course> stringList = (List<Course>)request.getAttribute("stringList");
            if(stringList.size()!=0){
      for(int i=0;i<stringList.size();i++){        
          pageContext.setAttribute("Course",stringList.get(i)); 

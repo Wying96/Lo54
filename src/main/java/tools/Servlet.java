@@ -4,6 +4,17 @@
  * and open the template in the editor.
  */
 package tools;
+
+/**
+ *
+ * @author wuying
+ */
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 import entity.Course;
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +28,7 @@ import repository.HibernateCourseDao;
  *
  * @author wuying
  */
-public class TableServlet extends HttpServlet {
+public class Servlet extends HttpServlet {
      public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
      HibernateCourseDao dao=new HibernateCourseDao();
      List<Course> stringList=dao.findAll();
