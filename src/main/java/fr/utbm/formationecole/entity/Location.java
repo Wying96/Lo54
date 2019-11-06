@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package fr.utbm.formationecole.entity;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -27,49 +29,46 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author wuying
  */
 @Entity
-@Table(name = "COURSE")
+@Table(name = "LOCATION")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Course.findAll", query = "SELECT c FROM Course c"),
-    @NamedQuery(name = "Course.findById", query = "SELECT c FROM Course c WHERE c.id = :id"),
-    @NamedQuery(name = "Course.findByUncompletId", query = "SELECT c FROM Course c WHERE c.id like :id"),
-    @NamedQuery(name = "Course.findByUncompletTitle", query = "SELECT c FROM Course c WHERE c.title like :title"),
-    @NamedQuery(name = "Course.findByTitle", query = "SELECT c FROM Course c WHERE c.title = :title")})
-public class Course implements Serializable {
+    @NamedQuery(name = "Location.findAll", query = "SELECT l FROM Location l"),
+    @NamedQuery(name = "Location.findById", query = "SELECT l FROM Location l WHERE l.id = :id"),
+    @NamedQuery(name = "Location.findByCity", query = "SELECT l FROM Location l WHERE l.city = :city")})
+public class Location implements Serializable {
 
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 128)
-    @Column(name = "TITLE")
-    private String title;
+    @Column(name = "CITY")
+    private String city;
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 16)
     @Column(name = "ID")
-    private String id;
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "courseId", fetch = FetchType.LAZY)
+    private Integer id;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "locationId", fetch = FetchType.LAZY)
     private Set<CourseSession> courseSessionSet;
 
-    public Course() {
+    public Location() {
     }
 
-    public Course(String id) {
+    public Location(Integer id) {
         this.id = id;
     }
 
-    public Course(String id, String title) {
+    public Location(Integer id, String city) {
         this.id = id;
-        this.title = title;
+        this.city = city;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -93,10 +92,10 @@ public class Course implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Course)) {
+        if (!(object instanceof Location)) {
             return false;
         }
-        Course other = (Course) object;
+        Location other = (Location) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -105,15 +104,15 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Course[ id=" + id + " ]";
+        return "entity.Location[ id=" + id + " ]";
     }
 
-    public String getTitle() {
-        return title;
+    public String getCity() {
+        return city;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCity(String city) {
+        this.city = city;
     }
     
 }

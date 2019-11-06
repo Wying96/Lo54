@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   <!-- Define Persistence Unit -->
   <persistence-unit name="my_persistence_unit">
-    <class>entity.Course</class>
-    <class>entity.CourseSession</class>
-    <class>entity.Client</class>
-    <class>entity.Location</class>
-    <class>entity.Users</class>
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>fr.utbm.formationecole.entity.Users</class>
+    <class>fr.utbm.formationecole.entity.Location</class>
+    <class>fr.utbm.formationecole.entity.Course</class>
+    <class>fr.utbm.formationecole.entity.CourseSession</class>
+    <class>fr.utbm.formationecole.entity.Client</class>
     <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/FormationEcole"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

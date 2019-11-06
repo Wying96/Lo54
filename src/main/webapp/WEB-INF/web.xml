@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>CalendarServlet</servlet-name>
-        <servlet-class>tools.CalendarServlet</servlet-class>
+        <servlet-class>fr.utbm.formationecole.tools.CalendarServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
