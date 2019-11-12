@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-11-6 18:50:13 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fr.utbm.formationecole.entity.CourseSession" table="COURSE_SESSION" catalog="FormationEcole" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="startDate" type="date">
+            <column name="START_DATE" length="10" not-null="true" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="END_DATE" length="10" not-null="true" />
+        </property>
+        <property name="maxNumber" type="java.lang.Integer">
+            <column name="MAX_NUMBER" />
+        </property>
+        <property name="courseId" type="string">
+            <column name="COURSE_ID" length="16" not-null="true" />
+        </property>
+        <property name="locationId" type="int">
+            <column name="LOCATION_ID" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
