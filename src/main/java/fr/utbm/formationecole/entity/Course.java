@@ -12,6 +12,11 @@ public class Course  implements java.io.Serializable {
      private String id;
      private String title;
 
+    @Override
+    public String toString() {
+        return "Course{" + "id=" + id + ", title=" + title + '}';
+    }
+
     public Course() {
     }
 

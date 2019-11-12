@@ -22,7 +22,7 @@ public class Location  implements java.io.Serializable {
     public Integer getId() {
         return this.id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -35,6 +35,11 @@ public class Location  implements java.io.Serializable {
     }
 
 
+    @Override
+    public String toString() {
+        return "Location{" + "id=" + id + ", city=" + city + '}';
+    }
+    
 
 
 }

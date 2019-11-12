@@ -2,6 +2,7 @@
 import fr.utbm.formationecole.entity.Course;
 import fr.utbm.formationecole.entity.Location;
 import fr.utbm.formationecole.entity.Users;
+import fr.utbm.formationecole.repository.CourseDaoImp;
 import fr.utbm.formationecole.repository.LocationDaoImp;
 import fr.utbm.formationecole.tools.HibernateUtil;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 //import fr.utbm.formationecole.service.LocationService;
@@ -86,7 +88,15 @@ public class App3 {
 //l.setCity("paris3");
 LocationDaoImp lp=new LocationDaoImp();
 //lp.save(l);
-lp.delete(14);
+//lp.delete(14);
+
+CourseDaoImp cd=new CourseDaoImp();
+List<Course> lcs = cd.findByTitle("ava");
+for(Course c: lcs){
+    System.out.println(c.toString());
+    
+}
+
 //Location l2 = lp.findById(1);
 //l2.setCity("testGetAndUpdate");
 //lp.update(l2);
@@ -97,9 +107,16 @@ lp.delete(14);
 //
 //    Session session = HibernateUtil.getSessionFactory().openSession();
 //    session.beginTransaction();
+//    Query query=session.createQuery("from Location");
+    //query.list();
+//List<Location> ls= lp.findAll();//
+//for(Location l: ls){
+//    System.out.println(l.toString());
+//    
+//}
 //    session.delete(l);
 //    session.getTransaction().commit();
-//    session.close();
+   // session.close();
 
 System.exit(0);
     }

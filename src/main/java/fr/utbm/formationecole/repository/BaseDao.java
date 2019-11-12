@@ -19,6 +19,8 @@ public interface BaseDao<T> {
     public void delete(Serializable id);  
   
     public T findById(Serializable id);  
+    
+    public List<T> findAll();  
   
     public List<T> findByHQL(String hql, Object... params);  
 }

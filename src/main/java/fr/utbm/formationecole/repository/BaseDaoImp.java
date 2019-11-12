@@ -117,6 +117,13 @@ public class BaseDaoImp<T> implements BaseDao <T> {
         return (T) this.getSession().get(this.clazz, id);  
     }  
   
+    public List<T> findAll() {
+//        int index = this.clazz.toString().split(".").length;
+        String cla = this.clazz.toString();
+        String hql = "from "+ cla.substring(cla.lastIndexOf(".")+1);
+        return this.findByHQL(hql);
+    }  
+    
     public List<T> findByHQL(String hql, Object... params) {  
         Query query = this.getSession().createQuery(hql);  
         for (int i = 0; params != null && i < params.length; i++) {  
