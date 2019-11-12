@@ -3,13 +3,15 @@ import fr.utbm.formationecole.entity.Course;
 import fr.utbm.formationecole.entity.Location;
 import fr.utbm.formationecole.entity.Users;
 import fr.utbm.formationecole.repository.LocationDaoImp;
+import fr.utbm.formationecole.tools.HibernateUtil;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.hibernate.Session;
 
-import fr.utbm.formationecole.service.LocationService;
+//import fr.utbm.formationecole.service.LocationService;
 //import org.hibernate.Query;
 //
 //import org.hibernate.Session;
@@ -79,10 +81,26 @@ public class App3 {
 //        } catch (Exception ex) {
 //            Logger.getLogger(App3.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-Location l=new Location();
+//Location l=new Location();
 
-l.setCity("paris");
+//l.setCity("paris3");
 LocationDaoImp lp=new LocationDaoImp();
-lp.save(l);
+//lp.save(l);
+lp.delete(14);
+//Location l2 = lp.findById(1);
+//l2.setCity("testGetAndUpdate");
+//lp.update(l2);
+//
+//    Location l2=new Location();
+//
+//    l2.setCity("paris2");
+//
+//    Session session = HibernateUtil.getSessionFactory().openSession();
+//    session.beginTransaction();
+//    session.delete(l);
+//    session.getTransaction().commit();
+//    session.close();
+
+System.exit(0);
     }
 }

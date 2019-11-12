@@ -12,6 +12,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;  
   
 import javax.annotation.Resource;  
+import org.hibernate.HibernateException;
   
 import org.hibernate.Query;  
 import org.hibernate.Session;  
@@ -47,16 +48,69 @@ public class BaseDaoImp<T> implements BaseDao <T> {
         return this.sessionFactory.openSession();  
     }  
   
-    public void save(T entity) {  
-        this.getSession().save(entity);  
+    public void save(T entity) {
+        Session session = this.getSession();
+        try{
+            session.beginTransaction();
+            session.save(entity); // do something
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(session.getTransaction()!=null){
+                try{
+                    session.getTransaction().rollback();
+                    session.close();
+                }catch(HibernateException heRollback){
+                    heRollback.printStackTrace();
+                }
+            }
+        }finally{
+            session.getTransaction().commit();
+            session.close();
+        }
     }  
   
     public void update(T entity) {  
-        this.getSession().update(entity);  
+        
+        Session session = this.getSession();
+        try{
+            session.beginTransaction();
+            session.update(entity); // do something
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(session.getTransaction()!=null){
+                try{
+                    session.getTransaction().rollback();
+                    session.close();
+                }catch(HibernateException heRollback){
+                    heRollback.printStackTrace();
+                }
+            }
+        }finally{
+            session.getTransaction().commit();
+            session.close();
+        }  
     }  
   
     public void delete(Serializable id) {  
-        this.getSession().delete(this.findById(id));  
+        Session session = this.getSession();
+        try{
+            session.beginTransaction();
+            T t= this.findById(id);
+            session.delete(t); // do something
+        }catch(HibernateException he){
+            he.printStackTrace();
+            if(session.getTransaction()!=null){
+                try{
+                    session.getTransaction().rollback();
+                    session.close();
+                }catch(HibernateException heRollback){
+                    heRollback.printStackTrace();
+                }
+            }
+        }finally{
+            session.getTransaction().commit();
+            session.close();
+        }  
     }  
   
     public T findById(Serializable id) {  
