@@ -15,7 +15,7 @@ import java.util.List;
 public interface CourseDao extends BaseDao<Course> {
     public List<Course> findByTitle(String title);
     
-    public List<Course> findBy2SessionTime(Object... params);
+    public List<Course> findBy2Time(Object... params);
     
     public List<Course> findBySessionLocation(Object... params);
     
