@@ -5,6 +5,7 @@ import fr.utbm.formationecole.entity.Users;
 import fr.utbm.formationecole.repository.CourseDaoImp;
 import fr.utbm.formationecole.repository.LocationDaoImp;
 import fr.utbm.formationecole.tools.HibernateUtil;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,7 +92,9 @@ LocationDaoImp lp=new LocationDaoImp();
 //lp.delete(14);
 
 CourseDaoImp cd=new CourseDaoImp();
-List<Course> lcs = cd.findByTitle("ava");
+Date startDate = new Date();
+Date endDate = new Date().getTime();
+List<Course> lcs = cd.findBy2SessionTime(startDate,endDate);
 for(Course c: lcs){
     System.out.println(c.toString());
     

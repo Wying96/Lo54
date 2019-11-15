@@ -7,6 +7,7 @@ package fr.utbm.formationecole.repository;
 
 import fr.utbm.formationecole.entity.Course;
 import java.util.List;
+import java.util.Date;
 
 /**
  *
@@ -15,8 +16,8 @@ import java.util.List;
 public interface CourseDao extends BaseDao<Course> {
     public List<Course> findByTitle(String title);
     
-    public List<Course> findBy2Time(Object... params);
-    
+    //public List<Course> findBy2SessionTime(Object... params);
+    public List<Course> findBy2SessionTime(Date stratDate, Date endDate);
     public List<Course> findBySessionLocation(Object... params);
     
 

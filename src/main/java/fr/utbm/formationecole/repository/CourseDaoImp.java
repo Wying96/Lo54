@@ -6,6 +6,7 @@
 package fr.utbm.formationecole.repository;
 
 import fr.utbm.formationecole.entity.Course;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -27,10 +28,15 @@ public class CourseDaoImp extends BaseDaoImp<Course> implements CourseDao {
         return query.list(); 
     }
 
-    @Override
-    public List<Course> findBy2SessionTime(Object... params) {
+    public List<Course> findBy2SessionTime(Date startDate, Date endDate) {//Object... params
         //Date startDate, Date endDate
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String hql = "from Course c "
+                + "where c.CourseSession.startDate > :startDate"
+                + "and c.CourseSession.endDate < :endDate";
+        Query query = this.getSession().createQuery(hql);  
+        query.setDate("startDate", startDate);  
+        query.setDate("endDate", endDate);
+        return query.list(); 
     }
 
     @Override
